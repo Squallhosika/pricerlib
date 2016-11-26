@@ -4,9 +4,9 @@
 #include <vector>
 #include <algorithm>
 
-#include "UType.h"
-#include "CProcessVolLoc.h"
-#include "CTriDagMatrix.h"
+#include "pricer/UType.h"
+#include "pricer/processes/CProcessVolLoc.h"
+#include "pricer/math/CTriDagMatrix.h"
 
 namespace Pricer
 {

@@ -7,6 +7,8 @@
 
 #include "targetver.h"
 
+#include <vector>
+#include <string>
 #include <stdio.h>
 #include <tchar.h>
 

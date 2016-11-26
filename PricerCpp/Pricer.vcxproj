@@ -18,6 +18,47 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pricer\instrs\Uall.h" />
+    <ClInclude Include="pricer\math\UAll.h" />
+    <ClInclude Include="pricer\mceng\CEurStat.h" />
+    <ClInclude Include="pricer\mceng\CGenerator.h" />
+    <ClInclude Include="pricer\math\CGrid.h" />
+    <ClInclude Include="pricer\math\CInterp.h" />
+    <ClInclude Include="pricer\mceng\CPathGen.h" />
+    <ClInclude Include="pricer\mceng\Uall.h" />
+    <ClInclude Include="pricer\pdeeng\CPdeEng.h" />
+    <ClInclude Include="pricer\pdeeng\UAll.h" />
+    <ClInclude Include="pricer\Pricer.h" />
+    <ClInclude Include="pricer\processes\CProcessVolLoc.h" />
+    <ClInclude Include="pricer\processes\CSchemeLocVol.h" />
+    <ClInclude Include="pricer\math\CTriDagMatrix.h" />
+    <ClInclude Include="pricer\processes\IProcess.h" />
+    <ClInclude Include="pricer\processes\UAll.h" />
+    <ClInclude Include="pricer\stdafx.h" />
+    <ClInclude Include="pricer\targetver.h" />
+    <ClInclude Include="pricer\tools\UAll.h" />
+    <ClInclude Include="pricer\tools\UFormulas.h" />
+    <ClInclude Include="pricer\instrs\UPayoffs.h" />
+    <ClInclude Include="pricer\processes\USigmas.h" />
+    <ClInclude Include="pricer\UTest.h" />
+    <ClInclude Include="pricer\UType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pricer\mceng\CGenerator.cpp" />
+    <ClCompile Include="pricer\math\CGrid.cpp" />
+    <ClCompile Include="pricer\math\CInterp.cpp" />
+    <ClCompile Include="pricer\Pricer.cpp" />
+    <ClCompile Include="pricer\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="pricer\instrs\UPayoffs.cpp" />
+    <ClCompile Include="pricer\processes\USigmas.cpp" />
+    <ClCompile Include="pricer\UTest.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8793B972-255B-430F-99B1-4DAEECD7D4ED}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -85,8 +126,9 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\..\..\boost_1_60_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\..\..\..\dev\boost_1_60_0;$(SolutionDir)\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>pricer/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,8 +143,9 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\..\..\boost_1_60_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\..\..\..\dev\boost_1_60_0;$(SolutionDir)\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>pricer/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,6 +162,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>.\..\..\..\dev\boost_1_60_0;$(SolutionDir)\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pricer/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,7 +181,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\..\..\boost_1_60_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\..\..\..\dev\boost_1_60_0;$(SolutionDir)\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pricer/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,43 +191,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CGenerator.h" />
-    <ClInclude Include="CGrid.h" />
-    <ClInclude Include="CInterp.h" />
-    <ClInclude Include="CPathGen.h" />
-    <ClInclude Include="CProcessVolLoc.h" />
-    <ClInclude Include="CSchemeLocVol.h" />
-    <ClInclude Include="UFormulas.h" />
-    <ClInclude Include="UTest.h" />
-    <ClInclude Include="CTriDagMatrix.h" />
-    <ClInclude Include="IProcess.h" />
-    <ClInclude Include="CEurStat.h" />
-    <ClInclude Include="CPdeEng.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="UPayoffs.h" />
-    <ClInclude Include="USigmas.h" />
-    <ClInclude Include="UType.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CGenerator.cpp" />
-    <ClCompile Include="CGrid.cpp" />
-    <ClCompile Include="CInterp.cpp" />
-    <ClCompile Include="UTest.cpp" />
-    <ClCompile Include="Pricer.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="UPayoffs.cpp" />
-    <ClCompile Include="USigmas.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

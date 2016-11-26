@@ -1,7 +1,7 @@
 // Pricer.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include "pricer/stdafx.h"
 #include "UTest.h"
 #include <iostream>
 

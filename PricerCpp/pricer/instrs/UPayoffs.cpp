@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pricer/stdafx.h"
 #include "UPayoffs.h"
 
 namespace Pricer

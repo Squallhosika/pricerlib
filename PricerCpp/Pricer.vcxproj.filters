@@ -1,35 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="pricer\stdafx.h" />
+    <ClInclude Include="pricer\targetver.h" />
+    <ClInclude Include="pricer\UTest.h" />
+    <ClInclude Include="pricer\UType.h" />
+    <ClInclude Include="pricer\mceng\CGenerator.h" />
+    <ClInclude Include="pricer\mceng\CEurStat.h" />
+    <ClInclude Include="pricer\math\CInterp.h" />
+    <ClInclude Include="pricer\mceng\CPathGen.h" />
+    <ClInclude Include="pricer\pdeeng\CPdeEng.h" />
+    <ClInclude Include="pricer\processes\CProcessVolLoc.h" />
+    <ClInclude Include="pricer\processes\CSchemeLocVol.h" />
+    <ClInclude Include="pricer\math\CTriDagMatrix.h" />
+    <ClInclude Include="pricer\tools\UFormulas.h" />
+    <ClInclude Include="pricer\instrs\UPayoffs.h" />
+    <ClInclude Include="pricer\processes\USigmas.h" />
+    <ClInclude Include="pricer\processes\IProcess.h" />
+    <ClInclude Include="pricer\math\CGrid.h" />
+    <ClInclude Include="pricer\instrs\Uall.h" />
+    <ClInclude Include="pricer\math\UAll.h" />
+    <ClInclude Include="pricer\mceng\Uall.h" />
+    <ClInclude Include="pricer\pdeeng\UAll.h" />
+    <ClInclude Include="pricer\processes\UAll.h" />
+    <ClInclude Include="pricer\tools\UAll.h" />
+    <ClInclude Include="pricer\Pricer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CEurStat.h" />
-    <ClInclude Include="CGenerator.h" />
-    <ClInclude Include="CGrid.h" />
-    <ClInclude Include="CInterp.h" />
-    <ClInclude Include="CPathGen.h" />
-    <ClInclude Include="CPdeEng.h" />
-    <ClInclude Include="CProcessVolLoc.h" />
-    <ClInclude Include="CSchemeLocVol.h" />
-    <ClInclude Include="CTriDagMatrix.h" />
-    <ClInclude Include="IProcess.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="UFormulas.h" />
-    <ClInclude Include="UPayoffs.h" />
-    <ClInclude Include="USigmas.h" />
-    <ClInclude Include="UTest.h" />
-    <ClInclude Include="UType.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CGenerator.cpp" />
-    <ClCompile Include="CGrid.cpp" />
-    <ClCompile Include="CInterp.cpp" />
-    <ClCompile Include="Pricer.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="UPayoffs.cpp" />
-    <ClCompile Include="USigmas.cpp" />
-    <ClCompile Include="UTest.cpp" />
+    <ClCompile Include="pricer\Pricer.cpp" />
+    <ClCompile Include="pricer\stdafx.cpp" />
+    <ClCompile Include="pricer\UTest.cpp" />
+    <ClCompile Include="pricer\mceng\CGenerator.cpp" />
+    <ClCompile Include="pricer\math\CInterp.cpp" />
+    <ClCompile Include="pricer\instrs\UPayoffs.cpp" />
+    <ClCompile Include="pricer\processes\USigmas.cpp" />
+    <ClCompile Include="pricer\math\CGrid.cpp" />
   </ItemGroup>
 </Project>

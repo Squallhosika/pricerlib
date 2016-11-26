@@ -1,14 +1,7 @@
-#include "stdafx.h"
+#include "pricer/stdafx.h"
 #include "UTest.h"
 
-#include "USigmas.h"
-#include "UPayoffs.h"
-#include "CPathGen.h"
-#include "CEurStat.h"
-#include "CPdeEng.h"
-#include "CGenerator.h"
-#include "CInterp.h"
-#include "UFormulas.h"
+#include "pricer/Pricer.h"
 
 namespace Pricer
 {

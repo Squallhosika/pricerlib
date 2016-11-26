@@ -2,8 +2,8 @@
 #define pricer_cpathgen
 
 
-#include "IProcess.h"
-#include "UType.h"
+#include "pricer/processes/IProcess.h"
+#include "pricer/UType.h"
 #include <vector>
 
 namespace Pricer
