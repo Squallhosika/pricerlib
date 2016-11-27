@@ -6,6 +6,8 @@
 *.exe
 *.o
 *.so
+*.obj
+*.lib
 
 # Packages #
 ############
@@ -33,6 +35,11 @@
 # VS 2013 #
 ###########
 *.user
+*.ipch
+*.pdb
+*.idb
+*.pch
+*.ilk
 
 
 # OS generated files #
