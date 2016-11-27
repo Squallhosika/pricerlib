@@ -2,10 +2,10 @@
 #define pricer_cschemelocvol
 
 #include "pricer/UType.h"
+#include "CSigmaLoc.h"
 
 namespace Pricer
 {
-  template<typename SIGMA>
   class CSchemeLocVol
   {
   public:
@@ -13,64 +13,35 @@ namespace Pricer
     // the scheme is containt by the object
     // on which he point so we do not want to 
     // destroy it when the scheme is destroy
-    CSchemeLocVol(SIGMA p_sigma);
-    double virtual evol(double p_s, double p_step, double p_w) const = 0;
+    CSchemeLocVol(const ptr<CSigmaLoc>& p_sigma);
+    double virtual evol(double p_t, double p_s, double p_step, double p_w) const = 0;
 
-    static ptr<CSchemeLocVol> Factory(SIGMA p_sigma, bool p_isMillstein = false);
+    static ptr<CSchemeLocVol> Factory(const ptr<CSigmaLoc>& p_sigma, 
+      bool p_isMillstein = false);
   protected:
-    SIGMA m_sigma;
+    ptr<CSigmaLoc> m_sigma;
   };
 
-  template<typename SIGMA>
-  CSchemeLocVol<SIGMA>::CSchemeLocVol(SIGMA p_sigma)
-    :m_sigma(p_sigma)
-  {}
-
-  template<typename SIGMA>
-  ptr<CSchemeLocVol<SIGMA>> CSchemeLocVol<SIGMA>::Factory(SIGMA p_sigma, bool p_isMillstein)
-  {
-    if (p_isMillstein)
-      return std::static_pointer_cast<CSchemeLocVol<SIGMA>>(std::make_shared<CSchemeLocVolMilstein<SIGMA>>(p_sigma));
-
-    return std::static_pointer_cast<CSchemeLocVol<SIGMA>>(std::make_shared<CSchemeLocVolEuler<SIGMA>>(p_sigma));
-  }
-
-  template<typename SIGMA>
-  class CSchemeLocVolEuler : public CSchemeLocVol<SIGMA>
+  class CSchemeLocVolEuler : public CSchemeLocVol
   {
   public:
-    CSchemeLocVolEuler(SIGMA p_sigma)
+    CSchemeLocVolEuler(const ptr<CSigmaLoc>& p_sigma)
       : CSchemeLocVol(p_sigma) {};
 
-    double evol(double p_s, double p_step, double p_w) const;
+    double virtual evol(double p_t, double p_s, double p_step, double p_w) const;
   };
 
-  template<typename SIGMA>
-  double CSchemeLocVolEuler<SIGMA>::evol(double p_s, double p_step, double p_w) const
-  {
-    return p_s + m_sigma(p_s) * std::sqrt(p_step) * p_w;
-  }
-
-  template<typename SIGMA>
-  class CSchemeLocVolMilstein : public CSchemeLocVol<SIGMA>
+  class CSchemeLocVolMilstein : public CSchemeLocVol
   {
   public:
-    CSchemeLocVolMilstein(SIGMA p_sigma)
+    CSchemeLocVolMilstein(const ptr<CSigmaLoc>& p_sigma)
       : CSchemeLocVol(p_sigma) {};
 
-    double evol(double p_s, double p_step, double p_w) const;
+    double virtual evol(double p_t, double p_s, double p_step, double p_w) const;
   };
-
-  template<typename SIGMA>
-  double CSchemeLocVolMilstein<SIGMA>::evol(double p_s, double p_step, double p_w) const
-  {
-    double l_sigma = m_sigma(p_s);
-    return p_s + l_sigma * std::sqrt(p_step) * p_w
-      + 0.5 * l_sigma * m_sigma.Deriv(p_s) * p_step * (p_w  * p_w - 1.0);
-  }
-
-
 }
+
+
 
 // Old Scheme maybe to complex fo what we need
 

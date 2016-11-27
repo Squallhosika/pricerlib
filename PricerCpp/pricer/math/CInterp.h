@@ -32,6 +32,20 @@ namespace Pricer
       else return yy[j] + ((x - xx[j]) / (xx[j + 1] - xx[j]))*(yy[j + 1] - yy[j]);
     }
   };
+
+  struct Spline_interp : public Base_interp
+  {
+    std::vector<double> y2;
+    Spline_interp(const std::vector<double>& xv, const std::vector<double>& yv, 
+      double yp1 = 1.e99, double ypn = 1.e99)
+      : Base_interp(xv, yv, 2), y2(xv.size())
+    {
+      sety2(xv, yv, yp1, ypn);
+    }
+    void sety2(const std::vector<double>& xv, const std::vector<double>& yv, 
+      double yp1, double ypn);
+    double rawinterp(int jl, double xv);
+  };
 }
 
 

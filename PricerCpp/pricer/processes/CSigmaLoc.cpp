@@ -1,8 +1,23 @@
-#include "pricer/stdafx.h"
-#include "USigmas.h"
+#include <pricer/stdafx.h>
+#include "CSigmaLoc.h"
 
 namespace Pricer
 {
+  double CSigmaLoc::Value(double p_t, double p_s) const
+  {
+    return (*this)(p_t, p_s);
+  }
+
+  double CSigmaLocS::operator()(double p_s) const
+  {
+    return (*this)(0.0, p_s);
+  }
+
+  double CSigmaLocS::DerivInS(double p_s) const
+  {
+    return this->DerivInS(0.0, p_s);
+  }
+
   CSigmaConst::CSigmaConst(double p_sig)
     : m_sig(p_sig)
   {}
@@ -12,7 +27,7 @@ namespace Pricer
     return m_sig;
   }
 
-  double CSigmaConst::Deriv(double) const
+  double CSigmaConst::DerivInS(double) const
   {
     return 0.0;
   }
@@ -26,7 +41,7 @@ namespace Pricer
     return m_sig0 * std::pow(std::abs(p_s), m_beta);
   }
 
-  double CSigmaCEV::Deriv(double p_s) const
+  double CSigmaCEV::DerivInS(double p_s) const
   {
     return m_sig0 * m_beta * std::pow(std::abs(p_s), m_beta - 1.0);
   }
@@ -40,7 +55,7 @@ namespace Pricer
     return m_sig0 * (p_s + m_shift);
   }
 
-  double CSigmaLNShifted::Deriv(double p_s) const
+  double CSigmaLNShifted::DerivInS(double p_s) const
   {
     return m_sig0;
   }
@@ -54,7 +69,7 @@ namespace Pricer
     return m_sig0 + m_alpha * std::pow(std::abs(p_s - m_atm), 1 + m_beta);
   }
 
-  double CSigmaConvex::Deriv(double p_s) const
+  double CSigmaConvex::DerivInS(double p_s) const
   {
     if (p_s < m_atm)
       return -1.0 * m_alpha * (1 + m_beta) * std::pow(std::abs(p_s - m_atm), m_beta);

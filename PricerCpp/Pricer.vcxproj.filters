@@ -15,7 +15,6 @@
     <ClInclude Include="pricer\math\CTriDagMatrix.h" />
     <ClInclude Include="pricer\tools\UFormulas.h" />
     <ClInclude Include="pricer\instrs\UPayoffs.h" />
-    <ClInclude Include="pricer\processes\USigmas.h" />
     <ClInclude Include="pricer\processes\IProcess.h" />
     <ClInclude Include="pricer\math\CGrid.h" />
     <ClInclude Include="pricer\instrs\Uall.h" />
@@ -25,6 +24,11 @@
     <ClInclude Include="pricer\processes\UAll.h" />
     <ClInclude Include="pricer\tools\UAll.h" />
     <ClInclude Include="pricer\Pricer.h" />
+    <ClInclude Include="pricer\params\CParam.h" />
+    <ClInclude Include="pricer\params\CVol.h" />
+    <ClInclude Include="pricer\params\CVolSquare.h" />
+    <ClInclude Include="pricer\math\Cinterp2d.h" />
+    <ClInclude Include="pricer\processes\CSigmaLoc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pricer\Pricer.cpp" />
@@ -33,7 +37,11 @@
     <ClCompile Include="pricer\mceng\CGenerator.cpp" />
     <ClCompile Include="pricer\math\CInterp.cpp" />
     <ClCompile Include="pricer\instrs\UPayoffs.cpp" />
-    <ClCompile Include="pricer\processes\USigmas.cpp" />
     <ClCompile Include="pricer\math\CGrid.cpp" />
+    <ClCompile Include="pricer\math\CInterp2d.cpp" />
+    <ClCompile Include="pricer\params\CVolSquare.cpp" />
+    <ClCompile Include="pricer\processes\CSigmaLoc.cpp" />
+    <ClCompile Include="pricer\processes\CSchemeLocVol.cpp" />
+    <ClCompile Include="pricer\processes\CProcessVolLoc.cpp" />
   </ItemGroup>
 </Project>

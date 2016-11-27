@@ -1,4 +1,4 @@
-#include "pricer/stdafx.h"
+#include <pricer/stdafx.h>
 #include "UTest.h"
 
 #include "pricer/Pricer.h"
@@ -22,16 +22,15 @@ namespace Pricer
       size_t l_sizeInH = 100;
       size_t l_sizeInT = 100;
 
-      typedef CSigmaConst SIGMA;
       typedef CPayoffId PAYOFF;
-      SIGMA  l_sig(0.2);
+      ptr<CSigmaConst> l_sig(new CSigmaConst(0.2));
       PAYOFF l_payoff;
       //PAYOFF   l_payoff;
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc  process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -72,16 +71,15 @@ namespace Pricer
       size_t l_sizeInH = 1000;
       size_t l_sizeInT = 100;
 
-      typedef CSigmaConst SIGMA;
       typedef CPayoffCall PAYOFF;
-      SIGMA  l_sig(0.2);
+      ptr<CSigmaConst> l_sig(new CSigmaConst(0.2));
       PAYOFF l_payoff(l_s0);
       //PAYOFF   l_payoff;
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc  process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -122,16 +120,15 @@ namespace Pricer
       size_t l_sizeInH = 1000;
       size_t l_sizeInT = 1000;
 
-      typedef CSigmaConst SIGMA;
       typedef CPayoffCall PAYOFF;
-      SIGMA  l_sig(0.2);
+      ptr<CSigmaConst> l_sig(new CSigmaConst(0.2));
       PAYOFF l_payoff(l_s0);
       //PAYOFF   l_payoff;
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc  process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -172,16 +169,15 @@ namespace Pricer
       size_t l_sizeInH = 100;
       size_t l_sizeInT = 100;
 
-      typedef CSigmaConst  SIGMA;
       typedef CPayoffDigit PAYOFF;
-      SIGMA  l_sig(0.2);
+      ptr<CSigmaConst> l_sig(new CSigmaConst(0.2));
       PAYOFF l_payoff(l_s0);
       //PAYOFF   l_payoff;
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc  process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -222,15 +218,14 @@ namespace Pricer
       size_t l_sizeInH = 100;
       size_t l_sizeInT = 100;
 
-      typedef CSigmaLNShifted  SIGMA;
-      typedef CPayoffId        PAYOFF;
-      SIGMA  l_sig(0.2, 0.5);
+      typedef CPayoffId PAYOFF;
+      ptr<CSigmaLNShifted> l_sig(new CSigmaLNShifted(0.2, 0.5));
       PAYOFF l_payoff;
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc  process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -271,15 +266,14 @@ namespace Pricer
       size_t l_sizeInH = 100;
       size_t l_sizeInT = 100;
 
-      typedef CSigmaLNShifted  SIGMA;
       typedef CPayoffCall        PAYOFF;
-      SIGMA  l_sig(0.8, 0.5);
+      ptr<CSigmaLNShifted> l_sig(new CSigmaLNShifted(0.2, 0.5));
       PAYOFF l_payoff(l_s0 - 1.0);
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -320,15 +314,14 @@ namespace Pricer
       size_t l_sizeInH = 1000;
       size_t l_sizeInT = 100;
 
-      typedef CSigmaLNShifted  SIGMA;
       typedef CPayoffDigit      PAYOFF;
-      SIGMA  l_sig(0.2, 0.3);
+      ptr<CSigmaLNShifted> l_sig(new CSigmaLNShifted(0.2, 0.3));
       PAYOFF l_payoff(l_s0 + 1.0);
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc  process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -369,15 +362,14 @@ namespace Pricer
       size_t l_sizeInH = 100;
       size_t l_sizeInT = 100;
 
-      typedef CSigmaCEV  SIGMA;
-      typedef CPayoffId  PAYOFF;
-      SIGMA  l_sig(0.2, 0.5);
+      typedef CPayoffId PAYOFF;
+      ptr<CSigmaCEV> l_sig(new CSigmaCEV(0.2, 0.5));
       PAYOFF l_payoff;
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -419,13 +411,13 @@ namespace Pricer
 
       typedef CSigmaCEV  SIGMA;
       typedef CPayoffCall  PAYOFF;
-      SIGMA  l_sig(0.8, 0.5);
+      ptr<CSigmaCEV> l_sig(new CSigmaCEV(0.8, 0.5));
       PAYOFF l_payoff(l_s0 - 1.0);
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -467,13 +459,13 @@ namespace Pricer
 
       typedef CSigmaCEV   SIGMA;
       typedef CPayoffDigit PAYOFF;
-      SIGMA  l_sig(0.8, 1.3);
+      ptr<CSigmaCEV> l_sig(new CSigmaCEV(0.8, 1.3));
       PAYOFF l_payoff(l_s0 - 1.0);
 
       typedef CStatEurPriceOnly<PAYOFF> stat;
-      typedef CProcessVolLoc<SIGMA>  process;
+      typedef CProcessVolLoc process;
       typedef CPathGen<CNormGen, stat> pathGen;
-      typedef CPdeEng<SIGMA, PAYOFF> pdeEng;
+      typedef CPdeEng<PAYOFF> pdeEng;
 
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
@@ -496,6 +488,18 @@ namespace Pricer
       std::cout << "MC  result: " << l_stat.Price() << std::endl;
       std::cout << "PDE result: " << l_prices.interp(l_s0) << std::endl;
       std::cout << std::endl;
+    }
+
+    void Test11()
+    {
+      std::vector<double> l_oTenor = { 0.0, 0.1, 0.25, 0.5, 0.1 };
+      std::vector<double> l_oStrike = { 0.1, 0.5, 1.0, 2.0, 10.0 };
+
+      double l_sigma = 0.15;
+      std::vector<double> l_oSmile(l_oStrike.size(), l_sigma);
+      DMatrix l_oSurface(l_oTenor.size(), l_oSmile);
+
+
     }
   }
 }

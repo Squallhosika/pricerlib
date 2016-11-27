@@ -65,10 +65,13 @@ namespace Pricer
   {
     path::const_iterator l_iterPathGen;
     double l_s;
+    double l_t;
 
     for (ptr<path> l_spPathGen : m_paths)
     {
       l_s = p_s0;
+      l_t = 0.0;
+
       ptr<path> l_spPath = std::make_shared<path>();
       l_spPath->reserve(m_spTimeSteps->size());
       
@@ -76,7 +79,8 @@ namespace Pricer
 
       for (double l_step : *m_spTimeSteps)
       {
-        l_s = m_spProcess->evol(l_s, l_step, *l_iterPathGen);
+        l_s = m_spProcess->evol(l_t, l_s, l_step, *l_iterPathGen);
+        l_t += l_step;
         l_spPath->push_back(l_s);
         l_iterPathGen++;
       }

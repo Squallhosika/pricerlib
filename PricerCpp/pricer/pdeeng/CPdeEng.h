@@ -11,14 +11,14 @@
 namespace Pricer
 {
 
-  template<typename SIGMA, typename PAYOFF>
+  template<typename PAYOFF>
   class CPdeEng
   {
     // implicit for theta  = 0.0
     // explicit for thetat = 1.0
   public:
     CPdeEng(
-      const ptr<CProcessVolLoc<SIGMA>>& p_spProcess,
+      const ptr<CProcessVolLoc>& p_spProcess,
       const PAYOFF& p_payoff,
       const std::vector<double>& p_timeSteps,
       double p_underMin, double p_underMax,
@@ -36,7 +36,7 @@ namespace Pricer
     typedef std::vector<double>::const_iterator vciter;
     CPdeEng();
 
-    ptr<CProcessVolLoc<SIGMA>> m_spProcess;
+    ptr<CProcessVolLoc> m_spProcess;
     PAYOFF              m_payoff;
     std::vector<double> m_reversTS;
     double              m_underMin;
@@ -53,28 +53,28 @@ namespace Pricer
     CTriDagMatrix<double> matrixTriDag(vciter p_iterTS, const std::vector<double>& p_v) const;
   };
 
-  template<typename SIGMA, typename PAYOFF>
-  inline std::vector<double> CPdeEng<SIGMA, PAYOFF>::UnderValues() const
+  template<typename PAYOFF>
+  inline std::vector<double> CPdeEng<PAYOFF>::UnderValues() const
   {
     return m_underValue;
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  inline size_t CPdeEng<SIGMA, PAYOFF>::SizeInT() const
+  template<typename PAYOFF>
+  inline size_t CPdeEng<PAYOFF>::SizeInT() const
   {
     // we only have the delta for Dt so we add + 1
     return m_reversTS.size() + 1;
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  inline size_t CPdeEng<SIGMA, PAYOFF>::SizeInH() const
+  template<typename PAYOFF>
+  inline size_t CPdeEng<PAYOFF>::SizeInH() const
   {
     return m_underValue.size();
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  CPdeEng<SIGMA, PAYOFF>::CPdeEng(
-    const ptr<CProcessVolLoc<SIGMA>>& p_spProcess,
+  template<typename PAYOFF>
+  CPdeEng<PAYOFF>::CPdeEng(
+    const ptr<CProcessVolLoc>& p_spProcess,
     const PAYOFF& p_payoff,
     const std::vector<double>& p_timeSteps,
     double p_underMin, double p_underMax,
@@ -86,13 +86,14 @@ namespace Pricer
     std::reverse(m_reversTS.begin(), m_reversTS.end());
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  void CPdeEng<SIGMA, PAYOFF>::OverloadBoundary(double p_mult, double p_s0, double p_mat, bool p_pos)
+  template<typename PAYOFF>
+  void CPdeEng<PAYOFF>::OverloadBoundary(double p_mult, double p_s0, double p_mat, bool p_pos)
   {
     double l_window;
 
     // kind of a arbitrary choice for S
-    l_window = p_mult * m_spProcess->StDev(p_s0, p_mat);
+    // TODO Modifiy that !!!!
+    l_window = p_mult * m_spProcess->StDev(0.0, p_s0, p_mat);
 
     if (!p_pos)
     {
@@ -106,8 +107,8 @@ namespace Pricer
     }
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  void CPdeEng<SIGMA, PAYOFF>::InitH(size_t p_nb)
+  template<typename PAYOFF>
+  void CPdeEng<PAYOFF>::InitH(size_t p_nb)
   {
     m_h = (m_underMax - m_underMin) / (p_nb - 1);
 
@@ -118,8 +119,8 @@ namespace Pricer
       m_underValue.push_back(l_i * m_h + m_underMin);
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  std::vector<double> CPdeEng<SIGMA, PAYOFF>::valuesAtMat() const
+  template<typename PAYOFF>
+  std::vector<double> CPdeEng<PAYOFF>::valuesAtMat() const
   {
     std::vector<double> l_res;
     l_res.reserve(SizeInH());
@@ -130,8 +131,8 @@ namespace Pricer
     return l_res;
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  std::vector<double> CPdeEng<SIGMA, PAYOFF>::vectorR(vciter p_iterTS, const std::vector<double>& p_v) const
+  template<typename PAYOFF>
+  std::vector<double> CPdeEng<PAYOFF>::vectorR(vciter p_iterTS, const std::vector<double>& p_v) const
   {
     std::vector<double> l_res;    
     l_res.reserve(SizeInH());
@@ -170,8 +171,8 @@ namespace Pricer
     return l_res;
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  CTriDagMatrix<double> CPdeEng<SIGMA, PAYOFF>::matrixTriDag(vciter p_iterTS, const std::vector<double>& p_v) const
+  template<typename PAYOFF>
+  CTriDagMatrix<double> CPdeEng<PAYOFF>::matrixTriDag(vciter p_iterTS, const std::vector<double>& p_v) const
   {
     std::vector<double> l_sup;
     std::vector<double> l_cent;
@@ -193,7 +194,7 @@ namespace Pricer
 
     for (vciter l_iterV = ++(p_v.begin()); l_iterV != --(p_v.end()); l_iterV++, l_iterUnder++)
     {
-      l_sigLoc = m_spProcess->Sigma()(*l_iterUnder);
+      l_sigLoc = m_spProcess->Sigma()->Value( (*l_iterUnder);
       l_coef = -0.5 * (1.0 - m_theta) * l_sigLoc * l_sigLoc * (*p_iterTS) / (m_h * m_h);
 
       l_sup.push_back(l_coef);
@@ -207,8 +208,8 @@ namespace Pricer
     return CTriDagMatrix<double>(l_sup, l_cent, l_inf);
   }
 
-  template<typename SIGMA, typename PAYOFF>
-  std::vector<double> CPdeEng<SIGMA, PAYOFF>::Compute() const
+  template<typename PAYOFF>
+  std::vector<double> CPdeEng<PAYOFF>::Compute() const
   {
     int l_counter = 0;
     std::vector<double> l_res = valuesAtMat();
