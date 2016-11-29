@@ -53,7 +53,7 @@ namespace Pricer
     //~CProcessVolLoc();
     CTriDagMatrix(const std::vector<T>& p_sup, const std::vector<T>& p_cent, const std::vector<T>& p_inf);
 
-    inline size_t Size() const;
+    size_t Size() const;
     std::vector<T> LUDemcop(const std::vector<T>& p_r) const;
     //TODO copy of the vector or not ???
     void Fill(std::vector<T>& p_sup, std::vector<T>& p_cent, std::vector<T>& p_inf);
@@ -78,7 +78,7 @@ namespace Pricer
   }
 
   template<typename T>
-  inline size_t CTriDagMatrix<T>::Size() const
+  size_t CTriDagMatrix<T>::Size() const
   {
     return m_cent.size();
   }

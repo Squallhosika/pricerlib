@@ -11,13 +11,6 @@ int _tmain(int argc, _TCHAR* argv[])
 {
   // Test the pricing by MC and PDE throw
 
-  std::cout << ((int)std::pow(2, 16) >> 1) << std::endl;
-  std::cout << ((int)std::pow(2, 16) >> 2) << std::endl;
-  std::cout << ((int)std::pow(2, 16) >> 3) << std::endl;
-  std::cout << ((int)std::pow(2, 16) >> 4) << std::endl;
-  std::cout << ((int)std::pow(2, 16) >> 5) << std::endl;
-  std::cout << ((int)std::pow(2, 16) >> 6) << std::endl;
-
   UTest::Test1();
   UTest::Test2();
   UTest::Test3();

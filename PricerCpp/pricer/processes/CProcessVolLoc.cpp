@@ -17,12 +17,12 @@ namespace Pricer
 
   // TODO Not the StDev of the processus
   // have to be improve
-  inline double CProcessVolLoc::StDev(double p_t, double p_s, double p_step) const
+  double CProcessVolLoc::StDev(double p_t, double p_s, double p_step) const
   {
     return (*m_sigma)(p_t, p_s)* std::sqrt(p_step);
   }
   
-  inline ptr<CSigmaLoc> CProcessVolLoc::Sigma() const
+  ptr<CSigmaLoc> CProcessVolLoc::Sigma() const
   {
     return m_sigma;
   }

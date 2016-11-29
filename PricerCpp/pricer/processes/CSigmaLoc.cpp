@@ -3,19 +3,19 @@
 
 namespace Pricer
 {
+  double CSigmaLocS::operator()(double p_t, double p_s) const
+  {
+    return (*this)(p_s);
+  }
+
+  double CSigmaLocS::DerivInS(double p_t, double p_s) const
+  {
+    return this->DerivInS(p_s);
+  }
+
   double CSigmaLoc::Value(double p_t, double p_s) const
   {
     return (*this)(p_t, p_s);
-  }
-
-  double CSigmaLocS::operator()(double p_s) const
-  {
-    return (*this)(0.0, p_s);
-  }
-
-  double CSigmaLocS::DerivInS(double p_s) const
-  {
-    return this->DerivInS(0.0, p_s);
   }
 
   CSigmaConst::CSigmaConst(double p_sig)

@@ -1,25 +1,27 @@
 #ifndef pricer_cpathgen
 #define pricer_cpathgen
 
+#include "CEurStat.h"
 
-#include "pricer/processes/IProcess.h"
-#include "pricer/UType.h"
+#include <pricer/processes/IProcess.h>
+#include <pricer/UType.h>
 #include <vector>
 
 namespace Pricer
 {
-  template<typename GEN, typename STAT>
+  template<typename GEN>
   class CPathGen
   {
   public:
-    typedef typename STAT::timeSteps timeSteps;
-    typedef typename STAT::path path;
+    typedef typename CStatEurPriceOnly::timeSteps timeSteps;
+    typedef typename CStatEurPriceOnly::path path;
 
-    CPathGen(const ptr<IProcess>& p_spProcess, const GEN& p_gen, const ptr<timeSteps>& p_spTs, size_t p_nbSimu);
+    CPathGen(const ptr<IProcess>& p_spProcess, const GEN& p_gen, 
+      const ptr<timeSteps>& p_spTs, size_t p_nbSimu);
     //~CPathGen();
 
     void GenSequence();
-    void FillStat(double p_s0, STAT& p_stat);
+    void FillStat(double p_s0, CStatEurPriceOnly& p_stat);
 
   private:
     CPathGen();
@@ -32,14 +34,16 @@ namespace Pricer
     bool m_isGen;
   };
 
-  template<typename GEN, typename STAT>
-  CPathGen<GEN, STAT>::CPathGen(const ptr<IProcess>& p_spProcess, const GEN& p_gen, const ptr<timeSteps>& p_spTs, size_t p_nbSimu)
-    : m_spProcess(p_spProcess), m_gen(p_gen), m_spTimeSteps(p_spTs), m_nbSimu(p_nbSimu), m_isGen(false)
+  template<typename GEN>
+  CPathGen<GEN>::CPathGen(const ptr<IProcess>& p_spProcess, const GEN& p_gen, 
+    const ptr<timeSteps>& p_spTs, size_t p_nbSimu)
+    : m_spProcess(p_spProcess), m_gen(p_gen), m_spTimeSteps(p_spTs), 
+    m_nbSimu(p_nbSimu), m_isGen(false)
   {
   }
 
-  template<typename GEN, typename STAT>
-  void CPathGen<GEN, STAT>::GenSequence()
+  template<typename GEN>
+  void CPathGen<GEN>::GenSequence()
   {
     if (m_isGen)
       return;
@@ -60,8 +64,8 @@ namespace Pricer
     m_isGen = true;
   }
 
-  template<typename GEN, typename STAT>
-  void CPathGen<GEN, STAT>::FillStat(double p_s0, STAT& p_stat)
+  template<typename GEN>
+  void CPathGen<GEN>::FillStat(double p_s0, CStatEurPriceOnly& p_stat)
   {
     path::const_iterator l_iterPathGen;
     double l_s;

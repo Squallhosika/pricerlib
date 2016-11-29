@@ -1,5 +1,5 @@
 #include <pricer/stdafx.h>
-#include "UPayoffs.h"
+#include "CPayoff.h"
 
 namespace Pricer
 {

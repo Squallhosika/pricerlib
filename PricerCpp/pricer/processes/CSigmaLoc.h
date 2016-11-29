@@ -8,7 +8,7 @@ namespace Pricer
   class CSigmaLoc
   {
   public:
-    virtual ~CSigmaLoc();
+    virtual ~CSigmaLoc() {};
     double virtual operator()(double p_t, double p_s) const = 0;
     double Value(double p_t, double p_s) const;
     double virtual DerivInS(double p_t, double p_s) const = 0;
@@ -17,14 +17,14 @@ namespace Pricer
   class CSigmaLocS : public CSigmaLoc
   {
   public: 
-    virtual ~CSigmaLocS();
+    virtual ~CSigmaLocS() {};
     double virtual operator()(double p_t, double p_s) const;
     double virtual operator()(double p_s) const = 0;
     double virtual DerivInS(double p_t, double p_s) const;
     double virtual DerivInS(double p_s) const = 0;
   };
 
-  class CSigmaConst
+  class CSigmaConst : public CSigmaLocS
   {
   public:
     CSigmaConst(double p_sig);
@@ -36,7 +36,7 @@ namespace Pricer
     double m_sig;
   };
 
-  class CSigmaCEV
+  class CSigmaCEV : public CSigmaLocS
   {
   public:
     CSigmaCEV(double p_sig0, double p_beta);
@@ -49,7 +49,7 @@ namespace Pricer
     double m_beta;
   };
 
-  class CSigmaLNShifted
+  class CSigmaLNShifted : public CSigmaLocS
   {
   public:
     CSigmaLNShifted(double p_sig0, double p_shift);
@@ -62,7 +62,7 @@ namespace Pricer
     double m_shift;
   };
 
-  class CSigmaConvex
+  class CSigmaConvex : public CSigmaLocS
   {
   public:
     CSigmaConvex(double p_sig0, double p_alpha,  double p_beta, double p_atm);
