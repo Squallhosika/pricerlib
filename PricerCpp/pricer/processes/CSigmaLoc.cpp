@@ -3,6 +3,19 @@
 
 namespace Pricer
 {
+  double CSigmaLoc::Value(double p_t, double p_s) const
+  {
+    return (*this)(p_t, p_s);
+  }
+
+  double CSigmaLoc::DerivInS(double p_t, double p_s) const
+  {
+    return 0.5 * ((*this)(p_t, p_s + s_epsiForS) 
+      - (*this)(p_t, p_s - s_epsiForS)) / s_epsiForS;
+  }
+
+  const double CSigmaLoc::s_epsiForS = 0.01;
+
   double CSigmaLocS::operator()(double p_t, double p_s) const
   {
     return (*this)(p_s);
@@ -13,9 +26,11 @@ namespace Pricer
     return this->DerivInS(p_s);
   }
 
-  double CSigmaLoc::Value(double p_t, double p_s) const
+  // TODO check the consicuve call of this function in debug
+  // particulary which operator() is call
+  double CSigmaLocS::DerivInS(double p_s) const
   {
-    return (*this)(p_t, p_s);
+    return CSigmaLoc::DerivInS(0.0, p_s);
   }
 
   CSigmaConst::CSigmaConst(double p_sig)

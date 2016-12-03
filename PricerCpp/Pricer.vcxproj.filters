@@ -30,6 +30,9 @@
     <ClInclude Include="pricer\processes\CSigmaLoc.h" />
     <ClInclude Include="pricer\instrs\CPayoff.h" />
     <ClInclude Include="pricer\params\UAll.h" />
+    <ClInclude Include="pricer\params\IVolDerivator.h" />
+    <ClInclude Include="pricer\params\CVolDerivSimple.h" />
+    <ClInclude Include="pricer\processes\CSigmaDupire.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pricer\Pricer.cpp" />
@@ -46,5 +49,8 @@
     <ClCompile Include="pricer\instrs\CPayoff.cpp" />
     <ClCompile Include="pricer\mceng\CEurStat.cpp" />
     <ClCompile Include="pricer\pdeeng\CPdeEng.cpp" />
+    <ClCompile Include="pricer\params\CVolDerivSimple.cpp" />
+    <ClCompile Include="pricer\processes\CSigmaDupire.cpp" />
+    <ClCompile Include="pricer\tools\UFormula.cpp" />
   </ItemGroup>
 </Project>

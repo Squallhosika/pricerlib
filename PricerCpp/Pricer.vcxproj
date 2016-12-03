@@ -39,6 +39,7 @@
     <ClInclude Include="pricer\params\CParam.h" />
     <ClInclude Include="pricer\params\CVol.h" />
     <ClInclude Include="pricer\params\CVolSquare.h" />
+    <ClInclude Include="pricer\params\IVolDerivator.h" />
     <ClInclude Include="pricer\params\UAll.h" />
     <ClInclude Include="pricer\pdeeng\CPdeEng.h" />
     <ClInclude Include="pricer\pdeeng\UAll.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="pricer\processes\CProcessVolLoc.h" />
     <ClInclude Include="pricer\processes\CSchemeLocVol.h" />
     <ClInclude Include="pricer\math\CTriDagMatrix.h" />
+    <ClInclude Include="pricer\processes\CSigmaDupire.h" />
     <ClInclude Include="pricer\processes\IProcess.h" />
     <ClInclude Include="pricer\processes\UAll.h" />
     <ClInclude Include="pricer\stdafx.h" />
@@ -56,6 +58,7 @@
     <ClInclude Include="pricer\processes\CSigmaLoc.h" />
     <ClInclude Include="pricer\UTest.h" />
     <ClInclude Include="pricer\UType.h" />
+    <ClInclude Include="pricer\params\CVolDerivSimple.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pricer\math\CInterp2d.cpp" />
@@ -68,6 +71,7 @@
     <ClCompile Include="pricer\Pricer.cpp" />
     <ClCompile Include="pricer\processes\CProcessVolLoc.cpp" />
     <ClCompile Include="pricer\processes\CSchemeLocVol.cpp" />
+    <ClCompile Include="pricer\processes\CSigmaDupire.cpp" />
     <ClCompile Include="pricer\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -78,7 +82,9 @@
     </ClCompile>
     <ClCompile Include="pricer\instrs\CPayoff.cpp" />
     <ClCompile Include="pricer\processes\CSigmaLoc.cpp" />
+    <ClCompile Include="pricer\tools\UFormula.cpp" />
     <ClCompile Include="pricer\UTest.cpp" />
+    <ClCompile Include="pricer\params\CVolDerivSimple.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8793B972-255B-430F-99B1-4DAEECD7D4ED}</ProjectGuid>

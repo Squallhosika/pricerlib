@@ -12,8 +12,8 @@ namespace Pricer
   {
   }
 
-  double CVolSquare::GetPoint(double tenor, double strike)
+  double CVolSquare::GetPoint(double tenor, double strike) const
   {
-    return m_oInter.interp(tenor, strike);
+    return const_cast<CVar_spline_interp2d&>(m_oInter).interp(tenor, strike);
   }
 }

@@ -1,7 +1,6 @@
 #ifndef pricer_iprocess
 #define pricer_iprocess
 
-
 namespace Pricer
 {
   class IProcess
@@ -12,6 +11,5 @@ namespace Pricer
   };
 
 }
-
 
 #endif

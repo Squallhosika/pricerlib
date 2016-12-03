@@ -11,7 +11,9 @@ namespace Pricer
     virtual ~CSigmaLoc() {};
     double virtual operator()(double p_t, double p_s) const = 0;
     double Value(double p_t, double p_s) const;
-    double virtual DerivInS(double p_t, double p_s) const = 0;
+    double virtual DerivInS(double p_t, double p_s) const;
+  private:
+    static const double s_epsiForS;
   };
 
   class CSigmaLocS : public CSigmaLoc
@@ -21,7 +23,7 @@ namespace Pricer
     double virtual operator()(double p_t, double p_s) const;
     double virtual operator()(double p_s) const = 0;
     double virtual DerivInS(double p_t, double p_s) const;
-    double virtual DerivInS(double p_s) const = 0;
+    double virtual DerivInS(double p_s) const;
   };
 
   class CSigmaConst : public CSigmaLocS
