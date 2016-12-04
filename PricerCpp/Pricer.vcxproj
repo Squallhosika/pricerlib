@@ -27,15 +27,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pricer\instrs\Uall.h" />
+    <ClInclude Include="pricer\instrs\UAll.h" />
     <ClInclude Include="pricer\math\Cinterp2d.h" />
     <ClInclude Include="pricer\math\UAll.h" />
+    <ClInclude Include="pricer\math\UFctInter.h" />
     <ClInclude Include="pricer\mceng\CEurStat.h" />
     <ClInclude Include="pricer\mceng\CGenerator.h" />
     <ClInclude Include="pricer\math\CGrid.h" />
     <ClInclude Include="pricer\math\CInterp.h" />
     <ClInclude Include="pricer\mceng\CPathGen.h" />
-    <ClInclude Include="pricer\mceng\Uall.h" />
+    <ClInclude Include="pricer\mceng\UAll.h" />
     <ClInclude Include="pricer\params\CParam.h" />
     <ClInclude Include="pricer\params\CVol.h" />
     <ClInclude Include="pricer\params\CVolSquare.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="pricer\stdafx.h" />
     <ClInclude Include="pricer\targetver.h" />
     <ClInclude Include="pricer\tools\UAll.h" />
+    <ClInclude Include="pricer\tools\UComparator.h" />
     <ClInclude Include="pricer\tools\UFormulas.h" />
     <ClInclude Include="pricer\instrs\CPayoff.h" />
     <ClInclude Include="pricer\processes\CSigmaLoc.h" />
@@ -62,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pricer\math\CInterp2d.cpp" />
+    <ClCompile Include="pricer\math\UFctInter.cpp" />
     <ClCompile Include="pricer\mceng\CEurStat.cpp" />
     <ClCompile Include="pricer\mceng\CGenerator.cpp" />
     <ClCompile Include="pricer\math\CGrid.cpp" />
@@ -82,6 +85,7 @@
     </ClCompile>
     <ClCompile Include="pricer\instrs\CPayoff.cpp" />
     <ClCompile Include="pricer\processes\CSigmaLoc.cpp" />
+    <ClCompile Include="pricer\tools\UComparator.cpp" />
     <ClCompile Include="pricer\tools\UFormula.cpp" />
     <ClCompile Include="pricer\UTest.cpp" />
     <ClCompile Include="pricer\params\CVolDerivSimple.cpp" />

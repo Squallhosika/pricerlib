@@ -15,6 +15,7 @@ namespace Pricer
   class CVol
   {
   public:
+    CVol(double p_spot) : m_spot(p_spot) { }
     virtual ~CVol() {};
     double virtual GetPoint(double tenor, double strike) const = 0;
     double Spot() const { return m_spot; };
@@ -24,11 +25,14 @@ namespace Pricer
 
     ptr<IVolDerivator> Derivator() const { return m_spDerivator; };
 
-  private:
+  protected:
     // TODO simpification not all the volatility should include their
     // spot
     ptr<IVolDerivator> m_spDerivator;
     double m_spot;
+
+  private:
+    CVol() {};
   };
 
 }

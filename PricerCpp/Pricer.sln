@@ -7,6 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pricer", "Pricer.vcxproj", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTestPricer", "UnitTestPricer\UnitTestPricer.vcxproj", "{AD2C0504-878C-4B6F-904E-92814F4CC3BB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Play", "Play\Play.vcxproj", "{3350486B-805F-406F-9B6E-18F71DF12093}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8793B972-255B-430F-99B1-4DAEECD7D4ED} = {8793B972-255B-430F-99B1-4DAEECD7D4ED}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -29,7 +34,16 @@ Global
 		{AD2C0504-878C-4B6F-904E-92814F4CC3BB}.Debug|x64.Build.0 = Debug|x64
 		{AD2C0504-878C-4B6F-904E-92814F4CC3BB}.Release|Win32.ActiveCfg = Release|Win32
 		{AD2C0504-878C-4B6F-904E-92814F4CC3BB}.Release|Win32.Build.0 = Release|Win32
-		{AD2C0504-878C-4B6F-904E-92814F4CC3BB}.Release|x64.ActiveCfg = Release|Win32
+		{AD2C0504-878C-4B6F-904E-92814F4CC3BB}.Release|x64.ActiveCfg = Release|x64
+		{AD2C0504-878C-4B6F-904E-92814F4CC3BB}.Release|x64.Build.0 = Release|x64
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Debug|Win32.Build.0 = Debug|Win32
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Debug|x64.ActiveCfg = Debug|x64
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Debug|x64.Build.0 = Debug|x64
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Release|Win32.ActiveCfg = Release|Win32
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Release|Win32.Build.0 = Release|Win32
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Release|x64.ActiveCfg = Release|x64
+		{3350486B-805F-406F-9B6E-18F71DF12093}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

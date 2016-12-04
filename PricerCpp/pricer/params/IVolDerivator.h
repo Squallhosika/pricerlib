@@ -11,14 +11,14 @@ namespace Pricer
   public:
     virtual ~IVolDerivator() {};
 
-    double DerivInT(double T, double K);
-    double DerivInK(double T, double K);
+    double virtual DerivInT(double T, double K) const = 0;
+    double virtual DerivInK(double T, double K) const = 0;
     // here the 2 is for the square
-    double DerivInK2(double T, double K);
+    double virtual DerivInK2(double T, double K) const = 0;
 
-    double DerivCallBachInT(double T, double K);
-    double DerivCallBachInK(double T, double K);
-    double DerivCallBachInK2(double T, double K);
+    double virtual DerivCallBachInT(double T, double K) const = 0;
+    double virtual DerivCallBachInK(double T, double K) const = 0;
+    double virtual DerivCallBachInK2(double T, double K) const = 0;
 
   private:
     // TODO add a param Date member

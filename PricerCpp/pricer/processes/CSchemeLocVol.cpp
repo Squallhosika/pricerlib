@@ -20,12 +20,14 @@ namespace Pricer
 
   double CSchemeLocVolEuler::evol(double p_t, double p_s, double p_step, double p_w) const
   {
-    return p_s + (*m_sigma)(p_t, p_s)* std::sqrt(p_step) * p_w;
+    // DEBUGTODO remove the local variable
+    double l_sigma = m_sigma->Value(p_t, p_s);
+    return p_s + m_sigma->Value(p_t, p_s)* std::sqrt(p_step) * p_w;
   }
 
   double CSchemeLocVolMilstein::evol(double p_t, double p_s, double p_step, double p_w) const
   {
-    double l_sigma = (*m_sigma)(p_t, p_s);
+    double l_sigma = m_sigma->Value(p_t, p_s);
     return p_s + l_sigma * std::sqrt(p_step) * p_w
       + 0.5 * l_sigma * m_sigma->DerivInS(p_t, p_s) * p_step * (p_w  * p_w - 1.0);
   }

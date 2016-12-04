@@ -6,7 +6,8 @@
 namespace Pricer
 {
 
-  CVolDerivSimple::CVolDerivSimple(const ptr<CVol>& p_vol)
+  CVolDerivSimple::CVolDerivSimple(CVol* p_vol)
+    : m_vol(p_vol)
   {
   }
 
@@ -35,8 +36,10 @@ namespace Pricer
 
   double CVolDerivSimple::DerivCallBachInT(double T, double K) const
   {
-    return 0.5 * (CallBachelier(m_vol->Spot(), 0.0, K, m_vol->GetPoint(T + m_tenorEpsi, K), T + m_tenorEpsi)
-      - CallBachelier(m_vol->Spot(), 0.0, K, m_vol->GetPoint(T - m_tenorEpsi, K), T - m_tenorEpsi))
+    // TODO no symetric to resolve issue about negative T
+    // it is the good way to fo it ??
+    return (CallBachelier(m_vol->Spot(), 0.0, K, m_vol->GetPoint(T + m_tenorEpsi, K), T + m_tenorEpsi)
+      - CallBachelier(m_vol->Spot(), 0.0, K, m_vol->GetPoint(T, K), T))
       / m_tenorEpsi;
   }
 

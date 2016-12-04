@@ -8,19 +8,23 @@ namespace Pricer
   class CVolDerivSimple : public IVolDerivator
   {
   public:
-    CVolDerivSimple(const ptr<CVol>& p_vol);
+    CVolDerivSimple(CVol* p_vol);
     ~CVolDerivSimple();
 
-    double DerivInT(double T, double K) const;
-    double DerivInK(double T, double K) const;
-    double DerivInK2(double T, double K) const;
+    double virtual DerivInT(double T, double K) const;
+    double virtual DerivInK(double T, double K) const;
+    double virtual DerivInK2(double T, double K) const;
 
-    double DerivCallBachInT(double T, double K) const;
-    double DerivCallBachInK(double T, double K) const;
-    double DerivCallBachInK2(double T, double K) const;
+    double virtual DerivCallBachInT(double T, double K) const;
+    double virtual DerivCallBachInK(double T, double K) const;
+    double virtual DerivCallBachInK2(double T, double K) const;
 
   private:
-    ptr<CVol> m_vol;
+    // build inside the vol object so should not own the
+    // object memory deleting
+    // TODO should we use a weak pointer here instead of
+    // a raw pointer
+    CVol* m_vol;
     double m_tenorEpsi = 0.01;
     double m_strikeEpsi = 0.01;
   };

@@ -16,9 +16,7 @@
     <ClInclude Include="pricer\tools\UFormulas.h" />
     <ClInclude Include="pricer\processes\IProcess.h" />
     <ClInclude Include="pricer\math\CGrid.h" />
-    <ClInclude Include="pricer\instrs\Uall.h" />
     <ClInclude Include="pricer\math\UAll.h" />
-    <ClInclude Include="pricer\mceng\Uall.h" />
     <ClInclude Include="pricer\pdeeng\UAll.h" />
     <ClInclude Include="pricer\processes\UAll.h" />
     <ClInclude Include="pricer\tools\UAll.h" />
@@ -33,6 +31,10 @@
     <ClInclude Include="pricer\params\IVolDerivator.h" />
     <ClInclude Include="pricer\params\CVolDerivSimple.h" />
     <ClInclude Include="pricer\processes\CSigmaDupire.h" />
+    <ClInclude Include="pricer\instrs\UAll.h" />
+    <ClInclude Include="pricer\mceng\UAll.h" />
+    <ClInclude Include="pricer\math\UFctInter.h" />
+    <ClInclude Include="pricer\tools\UComparator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pricer\Pricer.cpp" />
@@ -52,5 +54,7 @@
     <ClCompile Include="pricer\params\CVolDerivSimple.cpp" />
     <ClCompile Include="pricer\processes\CSigmaDupire.cpp" />
     <ClCompile Include="pricer\tools\UFormula.cpp" />
+    <ClCompile Include="pricer\math\UFctInter.cpp" />
+    <ClCompile Include="pricer\tools\UComparator.cpp" />
   </ItemGroup>
 </Project>

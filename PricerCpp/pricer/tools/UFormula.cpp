@@ -9,6 +9,9 @@ namespace Pricer
 {
   double CallBlack(double p_s, double p_t, double p_k, double p_sig, double p_mat)
   {
+    if (p_t >= p_mat)
+      return std::max(p_s - p_k, 0.0);
+
     boost::math::normal_distribution<> l_normDistrib;
     double l_d1 = (std::log(p_s / p_k) + 0.5 * p_sig * p_sig * (p_mat - p_t)) / (p_sig * sqrt(p_mat - p_t));
     double l_d2 = (std::log(p_s / p_k) - 0.5 * p_sig * p_sig * (p_mat - p_t)) / (p_sig * sqrt(p_mat - p_t));
@@ -17,6 +20,9 @@ namespace Pricer
 
   double CallDigitBlack(double p_s, double p_t, double p_k, double p_sig, double p_mat)
   {
+    if (p_t >= p_mat)
+      return p_s > p_k ? 1.0 : 0.0;
+
     boost::math::normal_distribution<> l_normDistrib;
     double l_d2 = (std::log(p_s / p_k) - 0.5 * p_sig * p_sig * (p_mat - p_t)) / (p_sig * sqrt(p_mat - p_t));
     return boost::math::cdf(l_normDistrib, l_d2);
@@ -34,6 +40,9 @@ namespace Pricer
 
   double CallBachelier(double p_s, double p_t, double p_k, double p_sig, double p_mat)
   {
+    if (p_t >= p_mat)
+      return std::max(p_s - p_k, 0.0);
+
     boost::math::normal_distribution<> l_normDistrib;
     double l_d1 = (p_s - p_k) / (p_sig * sqrt(p_mat - p_t));
     return (p_s - p_k)  * boost::math::cdf(l_normDistrib, l_d1)
