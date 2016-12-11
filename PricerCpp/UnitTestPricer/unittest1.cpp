@@ -3,6 +3,8 @@
 
 #include <pricer/Pricer.h>
 
+#define _SCL_SECURE_NO_WARNINGS
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTestPricer
@@ -41,14 +43,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(50.0, l_s0, l_mat, false);
       l_pdeEng.InitH(l_sizeInH);
@@ -97,14 +99,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(50.0, l_s0, l_mat, false);
       l_pdeEng.InitH(l_sizeInH);
@@ -152,14 +154,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(50.0, l_s0, l_mat, false);
       l_pdeEng.InitH(l_sizeInH);
@@ -206,14 +208,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(50.0, l_s0, l_mat, false);
       l_pdeEng.InitH(l_sizeInH);
@@ -260,14 +262,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(25.0, l_s0, l_mat, true);
       l_pdeEng.InitH(l_sizeInH);
@@ -315,14 +317,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(25.0, l_s0, l_mat, true);
       l_pdeEng.InitH(l_sizeInH);
@@ -369,14 +371,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(25.0, l_s0, l_mat, true);
       l_pdeEng.InitH(l_sizeInH);
@@ -423,14 +425,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(25.0, l_s0, l_mat, true);
       l_pdeEng.InitH(l_sizeInH);
@@ -476,14 +478,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(25.0, l_s0, l_mat, true);
       l_pdeEng.InitH(l_sizeInH);
@@ -529,14 +531,14 @@ namespace UnitTestPricer
       ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
       // MC Part
-      ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+      ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
       stat    l_stat(l_payoff, l_spMcTS);
       pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
       l_pathGen.GenSequence();
       l_pathGen.FillStat(l_s0, l_stat);
 
       // PDE part;
-      ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+      ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
       pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
       l_pdeEng.OverloadBoundary(25.0, l_s0, l_mat, true);
       l_pdeEng.InitH(l_sizeInH);

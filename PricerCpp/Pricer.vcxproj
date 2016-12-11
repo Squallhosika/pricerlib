@@ -58,7 +58,6 @@
     <ClInclude Include="pricer\tools\UFormulas.h" />
     <ClInclude Include="pricer\instrs\CPayoff.h" />
     <ClInclude Include="pricer\processes\CSigmaLoc.h" />
-    <ClInclude Include="pricer\UTest.h" />
     <ClInclude Include="pricer\UType.h" />
     <ClInclude Include="pricer\params\CVolDerivSimple.h" />
   </ItemGroup>
@@ -87,7 +86,6 @@
     <ClCompile Include="pricer\processes\CSigmaLoc.cpp" />
     <ClCompile Include="pricer\tools\UComparator.cpp" />
     <ClCompile Include="pricer\tools\UFormula.cpp" />
-    <ClCompile Include="pricer\UTest.cpp" />
     <ClCompile Include="pricer\params\CVolDerivSimple.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

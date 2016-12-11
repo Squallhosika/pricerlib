@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClInclude Include="pricer\stdafx.h" />
     <ClInclude Include="pricer\targetver.h" />
-    <ClInclude Include="pricer\UTest.h" />
     <ClInclude Include="pricer\UType.h" />
     <ClInclude Include="pricer\mceng\CGenerator.h" />
     <ClInclude Include="pricer\mceng\CEurStat.h" />
@@ -39,7 +38,6 @@
   <ItemGroup>
     <ClCompile Include="pricer\Pricer.cpp" />
     <ClCompile Include="pricer\stdafx.cpp" />
-    <ClCompile Include="pricer\UTest.cpp" />
     <ClCompile Include="pricer\mceng\CGenerator.cpp" />
     <ClCompile Include="pricer\math\CInterp.cpp" />
     <ClCompile Include="pricer\math\CGrid.cpp" />

@@ -27,13 +27,13 @@ int _tmain(int argc, _TCHAR* argv[])
   std::vector<double> l_oStrikes = { -5.0, 0.0, 5.0 };
 
   // Vol flat
-  //double l_sigma = 0.15;
-  //std::vector<double> l_oSmile(l_oStrikes.size(), l_sigma);
-  //DMatrix l_oSurface(l_oTenors.size(), l_oSmile);
+  double l_sigma = 0.15;
+  std::vector<double> l_oSmile(l_oStrikes.size(), l_sigma);
+  DMatrix l_oSurface(l_oTenors.size(), l_oSmile);
 
   // Vol with smile only
-  std::vector<double> l_oSmile = { 0.5, 0.15, 0.5 };
-  DMatrix l_oSurface(l_oTenors.size(), l_oSmile);
+  //std::vector<double> l_oSmile = { 0.5, 0.15, 0.5 };
+  //DMatrix l_oSurface(l_oTenors.size(), l_oSmile);
 
   ptr<CVol> l_spVolSquare(new CVolSquare(l_s0, l_oTenors, l_oStrikes, l_oSurface));
 
@@ -81,14 +81,14 @@ int _tmain(int argc, _TCHAR* argv[])
   ptr<process> l_spProcess = std::make_shared<process>(l_sig, l_isMilstein);
 
   // MC Part
-  ptr<stat::timeSteps> l_spMcTS = std::make_shared<stat::timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
+  ptr<timeSteps> l_spMcTS = std::make_shared<timeSteps>(l_nbTimeStep, l_mat / l_nbTimeStep);
   stat    l_stat(l_payoff, l_spMcTS);
   pathGen l_pathGen(std::static_pointer_cast<IProcess>(l_spProcess), CNormGen(), l_spMcTS, l_nbSimu);
   l_pathGen.GenSequence();
   l_pathGen.FillStat(l_s0, l_stat);
 
   // PDE part;
-  ptr<stat::timeSteps> l_spPdeTS = std::make_shared<stat::timeSteps>(l_sizeInT, l_mat / l_sizeInT);
+  ptr<timeSteps> l_spPdeTS = std::make_shared<timeSteps>(l_sizeInT, l_mat / l_sizeInT);
   pdeEng l_pdeEng(std::make_shared<process>(l_sig), l_payoff, *l_spPdeTS, 0.0, 100.0 + l_s0, l_theta);
   l_pdeEng.OverloadBoundary(50.0, l_s0, l_mat, false);
   l_pdeEng.InitH(l_sizeInH);
@@ -107,6 +107,34 @@ int _tmain(int argc, _TCHAR* argv[])
 
   //Assert::AreEqual(10.003746636298395, l_priceMC);
   //Assert::AreEqual(9.9999999999999769, l_pricePDE);
+
+  std::cout << "END NOW COME THE VOL AND VAR PAYOFF" << std::endl;
+
+  ptr<timeSteps> l_oTrueTS(new timeSteps()) ;
+
+  l_oTrueTS->resize(l_spMcTS->size() + 1);
+  (*l_oTrueTS)[0] = 0.0;
+  std::partial_sum(l_spMcTS->begin(), l_spMcTS->end(), ++l_oTrueTS->begin());
+
+
+  ptr<CPayoffPathDepPartial> l_payoffVol(new CPayoffVolBach(*l_oTrueTS));
+  ptr<CPayoffPathDepPartial> l_payoffVar(new CPayoffVarBach(*l_oTrueTS));
+  
+  CStatPathDepend l_statVol(l_payoffVol, l_oTrueTS);
+  CStatPathDepend l_statVar(l_payoffVar, l_oTrueTS);
+
+  l_pathGen.FillStat(l_s0, l_statVol);
+  l_pathGen.FillStat(l_s0, l_statVar);
+
+  double l_priceVol = l_statVol.Price();
+  double l_priceVar = l_statVar.Price();
+
+  std::cout << "Theo Value: " << CallBachelier(l_s0, 0.0, l_strike,
+    l_spVolSquare->GetPoint(l_mat, l_strike), l_mat) << std::endl;
+  std::cout << "MC  l_priceVol: " << l_priceVol << std::endl;
+  std::cout << "MC l_priceVar: " << l_priceVar << std::endl;
+  std::cout << "MC l_priceVar normalize: " << 0.5 * std::sqrt(l_priceVar) << std::endl;
+  std::cout << std::endl;
 
   std::cin.get();
 

@@ -10,24 +10,54 @@ namespace Pricer
 {
   // TODO add interval error price
   // info before full pricing
-  class CStatEurPriceOnly
+
+  class CStat
   {
   public:
-    typedef std::vector<double>    timeSteps;
-    typedef std::vector<double>    path;
-    typedef std::vector<ptr<path>> paths;
-    
+    CStat(const ptr<timeSteps>& p_spTimeSteps, size_t p_iNbSimu);
+    virtual ~CStat() {};
+
+    virtual double Price() const = 0;
+    void Add(ptr<path> p_spPath);
+
+  protected:
+    ptr<timeSteps> m_spTimeSteps;
+    paths          m_paths;
+  };
+
+  class CStatEurPriceOnly : public CStat
+  {
+  public:
     CStatEurPriceOnly(const ptr<CPayoffEUropean>& p_payoff, 
-      const ptr<timeSteps>& p_spTimeSteps, size_t p_nbSimu = 1000);
+      const ptr<timeSteps>& p_spTimeSteps, size_t p_iNbSimu = 1000);
     //~CStatEurPriceOnly();
 
     double Price() const;
-    void Add(ptr<path> p_spPath);
 
   private:
     ptr<CPayoffEUropean> m_payoff;
-    ptr<timeSteps> m_spTimeSteps;
-    paths          m_paths;
+  };
+
+  // TODO question: Where to put the intelligence of
+  // selected the point in the path that are used for
+  // the pricing. In first it'seems logical to give this 
+  // logic only to the CPayoff. We choose to put part of 
+  // this intelligence in the CStatPathDepend in order
+  // to determine which point in the path to select only
+  // once. 
+  class CStatPathDepend : public CStat
+  {
+  public:
+    CStatPathDepend(const ptr<CPayoffPathDepPartial>& p_payoff,
+      const ptr<timeSteps>& p_spTimeSteps, size_t p_iNbSimu = 1000);
+    //~CStatEurPriceOnly();
+
+    double Price() const;
+
+  private:
+    ptr<CPayoffPathDepPartial> m_payoff;
+
+    std::vector<size_t> pointToSelect() const;
   };
 }
 
