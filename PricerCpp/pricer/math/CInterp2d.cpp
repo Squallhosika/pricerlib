@@ -8,8 +8,10 @@ namespace Pricer
 {
   CSplineInY_interp2d::CSplineInY_interp2d(const std::vector<double>& x,
     const std::vector<double>& y, const DMatrix& z, 
-    const UFctInter::fctInter2Points& p_interInX)
-    : m_oX(x), m_oY(y), m_oZ(z), m_interInX(p_interInX)
+    const UFctInter::fctInter2Points& p_interInX,
+    bool p_bInfomExtrapol)
+    : m_oX(x), m_oY(y), m_oZ(z), m_interInX(p_interInX),
+    m_bInfomExtrapol(p_bInfomExtrapol)
   {
     m_oSplines.reserve(y.size());
     setSpline();

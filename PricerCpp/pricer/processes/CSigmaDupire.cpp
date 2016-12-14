@@ -24,15 +24,16 @@ namespace Pricer
     {
       std::vector<double> l_oSmile;
       l_oSmile.reserve(l_oSpaceSteps.size());
-      for (double sstep : l_oSpaceSteps)
-        l_oSmile.push_back(evalLocalVol(*iter, sstep));
+      //for (double sstep : l_oSpaceSteps)
+      for (size_t i = 0; i < l_oSpaceSteps.size(); i++)
+        l_oSmile.push_back(evalLocalVol(*iter, l_oSpaceSteps[i])); // sstep));
 
       l_oLocVolVals.push_back(l_oSmile);
     }
     l_oLocVolVals.front() = *(++l_oLocVolVals.begin());
 
     m_inter = std::make_shared<CSplineInY_interp2d>(l_oTimeSteps, l_oSpaceSteps,
-      l_oLocVolVals, UFctInter::InterLin());
+      l_oLocVolVals, UFctInter::InterLin(), true);
   }
 
   double CSigmaDupire::operator()(double p_t, double p_s) const
@@ -51,6 +52,13 @@ namespace Pricer
     if ( UComparator::AlmostEqual(derivInK2, 0.0))
       return m_vol->GetPoint(p_tenor, p_strike);
 
-    return std::sqrt(2.0 * derivInT / derivInK2);
+    if (derivInK2 < 0.0 || derivInT < 0.0 || std::abs(derivInT) < 1e-5
+      || std::abs(derivInK2) < 1e-5)
+      return m_vol->GetPoint(p_tenor, p_strike);
+
+    // DEBUGTODO
+    double l_res = std::sqrt(2.0 * derivInT / derivInK2);
+
+    return l_res;
   }
 }

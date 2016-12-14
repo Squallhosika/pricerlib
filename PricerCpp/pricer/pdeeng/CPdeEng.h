@@ -32,6 +32,10 @@ namespace Pricer
     void InitH(size_t p_nb);
     std::vector<double> Compute() const;
 
+    // TODO pass to private
+    double               m_underMin;
+    double               m_underMax;
+
   private:
     typedef std::vector<double>::const_iterator vciter;
     CPdeEng();
@@ -39,8 +43,7 @@ namespace Pricer
     ptr<CProcessVolLoc>  m_spProcess;
     ptr<CPayoffEUropean> m_payoff;
     std::vector<double>  m_reversTS;
-    double               m_underMin;
-    double               m_underMax;
+
     double               m_h;
     // TODO change h constant to variant:
     //std::vector<double> m_underStep;

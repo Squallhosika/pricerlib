@@ -52,6 +52,8 @@ namespace Pricer
 
   double CVolDerivSimple::DerivCallBachInK2(double T, double K) const
   {
+    // DEBUGTODO the below line
+    double l_vol = m_vol->GetPoint(T, K + m_strikeEpsi);
     return (CallBachelier(m_vol->Spot(), 0.0, K + m_strikeEpsi, m_vol->GetPoint(T, K + m_strikeEpsi), T)
       + CallBachelier(m_vol->Spot(), 0.0, K - m_strikeEpsi, m_vol->GetPoint(T, K - m_strikeEpsi), T)
       - 2.0 * CallBachelier(m_vol->Spot(), 0.0, K, m_vol->GetPoint(T, K), T))

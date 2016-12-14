@@ -34,6 +34,9 @@
     <ClInclude Include="pricer\mceng\UAll.h" />
     <ClInclude Include="pricer\math\UFctInter.h" />
     <ClInclude Include="pricer\tools\UComparator.h" />
+    <ClInclude Include="pricer\math\CMinimazer.h" />
+    <ClInclude Include="pricer\math\CVolInverser.h" />
+    <ClInclude Include="pricer\external\nr3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pricer\Pricer.cpp" />

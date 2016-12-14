@@ -27,8 +27,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="pricer\external\nr3.h" />
     <ClInclude Include="pricer\instrs\UAll.h" />
     <ClInclude Include="pricer\math\Cinterp2d.h" />
+    <ClInclude Include="pricer\math\CMinimazer.h" />
+    <ClInclude Include="pricer\math\CVolInverser.h" />
     <ClInclude Include="pricer\math\UAll.h" />
     <ClInclude Include="pricer\math\UFctInter.h" />
     <ClInclude Include="pricer\mceng\CEurStat.h" />

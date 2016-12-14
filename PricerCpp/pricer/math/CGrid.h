@@ -21,6 +21,24 @@ namespace Pricer
     vectd m_oSpaceSteps;
     
   };
+
+  // Init of the grid
+  struct SGener_iter
+  {
+    SGener_iter(double start, double end, unsigned int nbIter)
+    : m_dCurrent(start), m_dstep((end - start) / (nbIter - 1))
+    { }
+
+    double operator()()
+    {
+      double res = m_dCurrent;
+      m_dCurrent = res + m_dstep;
+      return res;
+    }
+
+    double m_dCurrent;
+    const double m_dstep;
+  };
 }
 
 #endif

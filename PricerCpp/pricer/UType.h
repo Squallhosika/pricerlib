@@ -9,6 +9,8 @@ using ptr = std::shared_ptr<T>;
 
 namespace Pricer {
 
+  typedef double Doub;
+
   // TODO change to ublast after or if more need
   // knowing that the class CTriDagMatrix.h
   // already exist

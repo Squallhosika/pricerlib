@@ -41,7 +41,7 @@ namespace Pricer
   {
   public:
     CSplineInY_interp2d(const std::vector<double>& x, const std::vector<double>& y, const DMatrix& z, 
-      const UFctInter::fctInter2Points& p_interInX);
+      const UFctInter::fctInter2Points& p_interInX, bool p_bInfomExtrapol);
 
     double virtual interp(double x, double y);
 
@@ -53,7 +53,7 @@ namespace Pricer
     // Base interp to be more generic
     std::vector<Spline_interp> m_oSplines;
     UFctInter::fctInter2Points m_interInX;
-    bool m_bInfomExtrapol = true;
+    bool m_bInfomExtrapol;
 
     void setSpline();
     int locateX(double x);
