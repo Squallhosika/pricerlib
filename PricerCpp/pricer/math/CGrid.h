@@ -3,23 +3,42 @@
 
 // TODO it is ok to add this file here
 #include <pricer/stdafx.h>
+#include <pricer/UType.h>
+#include <pricer/math/CMatrix.h>
+#include <functional>
 
 namespace Pricer
 {
   class CGrid
   {
-    typedef std::vector<double> vectd;
   public:
     CGrid(const vectd& p_timeSteps, const vectd& p_oSpaceSteps);
+    CGrid(double p_MinTS, double p_MaxTS, size_t p_nTS,
+      double p_MinSpaceStep, double p_MaxSpaceStep, size_t p_nSpaceStep);
+
     vectd TimeStepsDiff() const;
     vectd TimeSteps() const;
     vectd SpaceStepsDiff() const;
     vectd SpaceSteps() const;
 
-  private:
+  protected:
     vectd m_oTimeSteps;
     vectd m_oSpaceSteps;
-    
+
+    void sort();
+  };
+
+  class CGridWithValue : public CGrid
+  {
+  public:
+    CGridWithValue(const vectd& p_timeSteps, const vectd& p_oSpaceSteps);
+    const CMatrix& Values() const;
+    void SetValue(size_t p_iTS, size_t p_iSS, double value);
+    void Fill(const std::function<double(double, double)>& p_fctTimeSpace);
+  private:
+    // First by TimeStep then by Tenor
+    CMatrix m_oValues;
+
   };
 
   // Init of the grid

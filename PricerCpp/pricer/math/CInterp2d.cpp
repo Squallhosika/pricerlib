@@ -1,16 +1,25 @@
 #include <pricer/stdafx.h>
 #include "CInterp2d.h"
 
+#include <pricer/math/CMatrix.h>
 #include <algorithm>
 #include <iostream>
 
 namespace Pricer
 {
+  CBase_interp2d::~CBase_interp2d()
+  {}
+
+  CYThenX_interp2d::CYThenX_interp2d(const vectd& x, const vectd& y, const CMatrix& z)
+    : m_oX(x), m_oY(y), m_oZ(z)
+  {
+  }
+
   CSplineInY_interp2d::CSplineInY_interp2d(const std::vector<double>& x,
-    const std::vector<double>& y, const DMatrix& z, 
+    const std::vector<double>& y, const CMatrix& z, 
     const UFctInter::fctInter2Points& p_interInX,
     bool p_bInfomExtrapol)
-    : m_oX(x), m_oY(y), m_oZ(z), m_interInX(p_interInX),
+    : CYThenX_interp2d(x, y, z), m_interInX(p_interInX),
     m_bInfomExtrapol(p_bInfomExtrapol)
   {
     m_oSplines.reserve(y.size());

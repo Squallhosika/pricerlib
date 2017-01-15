@@ -1,5 +1,4 @@
-#ifndef pricer_math_ufunctioninter
-#define pricer_math_ufunctioninter
+#pragma once
 
 // Come from the numerical recipes
 #include <functional>
@@ -13,5 +12,3 @@ namespace Pricer
     fctInter2Points InterLin();
   }
 }
-
-#endif

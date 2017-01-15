@@ -1,5 +1,4 @@
-#ifndef pricer_cinter
-#define pricer_cinter
+#pragma once
 
 // Come from the numerical recipes
 #include <vector>
@@ -47,7 +46,3 @@ namespace Pricer
     double rawinterp(int jl, double xv);
   };
 }
-
-
-
-#endif

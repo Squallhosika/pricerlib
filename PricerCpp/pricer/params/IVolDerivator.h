@@ -20,6 +20,10 @@ namespace Pricer
     double virtual DerivCallBachInK(double T, double K) const = 0;
     double virtual DerivCallBachInK2(double T, double K) const = 0;
 
+    double virtual DerivCallBSInT(double T, double K) const = 0;
+    double virtual DerivCallBSInK(double T, double K) const = 0;
+    double virtual DerivCallBSInK2(double T, double K) const = 0;
+
   private:
     // TODO add a param Date member
   };

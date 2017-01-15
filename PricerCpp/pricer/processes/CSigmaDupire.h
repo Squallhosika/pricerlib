@@ -13,14 +13,30 @@ namespace Pricer
   {
   public:
     CSigmaDupire(const ptr<CVol>& p_vol);
-    ~CSigmaDupire() {};
+    virtual ~CSigmaDupire() {};
     void Init(const ptr<CGrid>& p_grid);
     double virtual operator()(double p_t, double p_s) const;
 
-  private:
+  protected:
     ptr<CVol> m_vol;
     ptr<CBase_interp2d> m_inter;
 
+    virtual double evalLocalVol(double p_tenor, double p_strike) = 0;
+  };
+
+  class CSigmaDupireBach : public CSigmaDupire
+  {
+  public:
+    CSigmaDupireBach(const ptr<CVol>& p_vol);
+  private:
+    double evalLocalVol(double p_tenor, double p_strike);
+  };
+
+  class CSigmaDupireBS : public CSigmaDupire
+  {
+  public:
+    CSigmaDupireBS(const ptr<CVol>& p_vol);
+  private:
     double evalLocalVol(double p_tenor, double p_strike);
   };
 }

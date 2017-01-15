@@ -27,17 +27,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="pricer\batch\CBatch.h" />
+    <ClInclude Include="pricer\batch\CPDEBatch.h" />
+    <ClInclude Include="pricer\env\SPricerOption.h" />
+    <ClInclude Include="pricer\env\UAll.h" />
     <ClInclude Include="pricer\external\nr3.h" />
     <ClInclude Include="pricer\instrs\UAll.h" />
     <ClInclude Include="pricer\math\Cinterp2d.h" />
+    <ClInclude Include="pricer\math\CMatrix.h" />
     <ClInclude Include="pricer\math\CMinimazer.h" />
-    <ClInclude Include="pricer\math\CVolInverser.h" />
+    <ClInclude Include="pricer\math\UVolInverser.h" />
     <ClInclude Include="pricer\math\UAll.h" />
     <ClInclude Include="pricer\math\UFctInter.h" />
     <ClInclude Include="pricer\mceng\CEurStat.h" />
     <ClInclude Include="pricer\mceng\CGenerator.h" />
     <ClInclude Include="pricer\math\CGrid.h" />
     <ClInclude Include="pricer\math\CInterp.h" />
+    <ClInclude Include="pricer\batch\CMCBatch.h" />
     <ClInclude Include="pricer\mceng\CPathGen.h" />
     <ClInclude Include="pricer\mceng\UAll.h" />
     <ClInclude Include="pricer\params\CParam.h" />
@@ -65,12 +71,17 @@
     <ClInclude Include="pricer\params\CVolDerivSimple.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="pricer\batch\CBatch.cpp" />
+    <ClCompile Include="pricer\batch\CPDEBatch.cpp" />
     <ClCompile Include="pricer\math\CInterp2d.cpp" />
+    <ClCompile Include="pricer\math\CMatrix.cpp" />
     <ClCompile Include="pricer\math\UFctInter.cpp" />
+    <ClCompile Include="pricer\math\UVolInverser.cpp" />
     <ClCompile Include="pricer\mceng\CEurStat.cpp" />
     <ClCompile Include="pricer\mceng\CGenerator.cpp" />
     <ClCompile Include="pricer\math\CGrid.cpp" />
     <ClCompile Include="pricer\math\CInterp.cpp" />
+    <ClCompile Include="pricer\batch\CMCBatch.cpp" />
     <ClCompile Include="pricer\params\CVolSquare.cpp" />
     <ClCompile Include="pricer\pdeeng\CPdeEng.cpp" />
     <ClCompile Include="pricer\Pricer.cpp" />

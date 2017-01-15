@@ -18,7 +18,7 @@ namespace Pricer
     // explicit for thetat = 1.0
   public:
     CPdeEng(
-      const ptr<CProcessVolLoc>& p_spProcess,
+      const ptr<CProcessVolLocBach>& p_spProcess,
       const ptr<CPayoffEUropean>& p_payoff,
       const std::vector<double>& p_timeSteps,
       double p_underMin, double p_underMax,
@@ -40,7 +40,7 @@ namespace Pricer
     typedef std::vector<double>::const_iterator vciter;
     CPdeEng();
 
-    ptr<CProcessVolLoc>  m_spProcess;
+    ptr<CProcessVolLocBach>  m_spProcess;
     ptr<CPayoffEUropean> m_payoff;
     std::vector<double>  m_reversTS;
 

@@ -7,20 +7,34 @@
 
 namespace Pricer
 {
+  template<typename SCHEME>
   class CProcessVolLoc : public IProcess
   {
   public:
-    CProcessVolLoc(const ptr<CSigmaLoc>& p_sigma, bool p_isMillstein = false);
-    //~CProcessVolLoc();
+    CProcessVolLoc(const ptr<CSigmaLoc>& p_sigma);
+    virtual ~CProcessVolLoc() {};
 
     double evol(double p_t, double p_s, double p_step, double p_w) const;
-    double StDev(double p_t, double p_s, double p_step) const;
+    virtual double StDev(double p_t, double p_s, double p_step) const = 0;
     ptr<CSigmaLoc> Sigma() const;
 
-  private:
+  protected:
+    ptr<SCHEME> m_spScheme;
     ptr<CSigmaLoc> m_sigma;
-    ptr<CSchemeLocVol> m_spScheme;
+  };
 
+  class CProcessVolLocBach : public CProcessVolLoc<CSchemeLocVolBach>
+  {
+  public:
+    CProcessVolLocBach(const ptr<CSigmaLoc>& p_sigma, bool p_isMillstein = false);
+    double StDev(double p_t, double p_s, double p_step) const;
+  };
+
+  class CProcessVolLocBS : public CProcessVolLoc<CSchemeLocVolBS>
+  {
+  public:
+    CProcessVolLocBS(const ptr<CSigmaLoc>& p_sigma, bool p_isMillstein = false);
+    double StDev(double p_t, double p_s, double p_step) const;
   };
 }
 #endif

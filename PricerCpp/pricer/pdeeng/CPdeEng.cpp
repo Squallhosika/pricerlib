@@ -6,7 +6,7 @@
 namespace Pricer
 {
   CPdeEng::CPdeEng(
-    const ptr<CProcessVolLoc>& p_spProcess,
+    const ptr<CProcessVolLocBach>& p_spProcess,
     const ptr<CPayoffEUropean>& p_payoff,
     const std::vector<double>& p_timeSteps,
     double p_underMin, double p_underMax,

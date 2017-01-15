@@ -588,7 +588,7 @@ namespace UnitTestPricer
       // Vol flat
       double l_sigma = 0.15;
       std::vector<double> l_oSmile(l_oStrikes.size(), l_sigma);
-      DMatrix l_oSurface(l_oTenors.size(), l_oSmile);
+      CMatrix l_oSurface(l_oTenors.size(), l_oSmile);
       ptr<CVol> l_spVolSquare(new CVolSquare(l_s0, l_oTenors, l_oStrikes, l_oSurface));
 
       

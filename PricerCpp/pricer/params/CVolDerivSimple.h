@@ -19,6 +19,10 @@ namespace Pricer
     double virtual DerivCallBachInK(double T, double K) const;
     double virtual DerivCallBachInK2(double T, double K) const;
 
+    double virtual DerivCallBSInT(double T, double K) const;
+    double virtual DerivCallBSInK(double T, double K) const;
+    double virtual DerivCallBSInK2(double T, double K) const;
+
   private:
     // build inside the vol object so should not own the
     // object memory deleting

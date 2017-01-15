@@ -16,7 +16,7 @@ namespace Pricer
 
     // TODO check for the efficiance in memory: The vector is deplace
     // lot of time or not
-    DMatrix l_oLocVolVals;
+    CMatrix l_oLocVolVals;
     l_oLocVolVals.push_back(std::vector<double>(l_oSpaceSteps));
     l_oLocVolVals.reserve(l_oTimeSteps.size());
 
@@ -41,7 +41,12 @@ namespace Pricer
     return m_inter->interp(p_t, p_s);
   }
 
-  double CSigmaDupire::evalLocalVol(double p_tenor, double p_strike)
+  CSigmaDupireBach::CSigmaDupireBach(const ptr<CVol>& p_vol)
+    : CSigmaDupire(p_vol)
+  {
+  }
+
+  double CSigmaDupireBach::evalLocalVol(double p_tenor, double p_strike)
   {
     // DEBUGTODO remove the following variable :
     double derivInT = m_vol->Derivator()->DerivCallBachInT(p_tenor, p_strike);
@@ -49,15 +54,30 @@ namespace Pricer
 
     // TODO find a better way to undle strange case
     // at the beginning of the diffusion
-    if ( UComparator::AlmostEqual(derivInK2, 0.0))
-      return m_vol->GetPoint(p_tenor, p_strike);
-
     if (derivInK2 < 0.0 || derivInT < 0.0 || std::abs(derivInT) < 1e-5
       || std::abs(derivInK2) < 1e-5)
       return m_vol->GetPoint(p_tenor, p_strike);
 
     // DEBUGTODO
     double l_res = std::sqrt(2.0 * derivInT / derivInK2);
+
+    return l_res;
+  }
+
+  double CSigmaDupireBS::evalLocalVol(double p_tenor, double p_strike)
+  {
+    // DEBUGTODO remove the following variable :
+    double derivInT = m_vol->Derivator()->DerivCallBSInT(p_tenor, p_strike);
+    double derivInK2 = m_vol->Derivator()->DerivCallBSInK2(p_tenor, p_strike);
+
+    // TODO find a better way to undle strange case
+    // at the beginning of the diffusion
+    if (derivInK2 < 0.0 || derivInT < 0.0 || std::abs(derivInT) < 1e-5
+      || std::abs(derivInK2 * p_strike * p_strike) < 1e-5)
+      return m_vol->GetPoint(p_tenor, p_strike);
+
+    // DEBUGTODO
+    double l_res = std::sqrt(2.0 * derivInT / (p_strike * p_strike * derivInK2));
 
     return l_res;
   }

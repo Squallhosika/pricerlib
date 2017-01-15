@@ -1,5 +1,4 @@
-#ifndef pricer_math_cinterp2d
-#define pricer_math_cinterp2d
+#pragma once
 
 // Come from the numerical recipes
 #include <vector>
@@ -7,48 +6,45 @@
 #include "CInterp.h"
 #include <pricer/UType.h>
 #include "UFctInter.h"
+#include <pricer/math/CMatrix.h>
 
 namespace Pricer
 {
   class CBase_interp2d
   {
   public:
-    ~CBase_interp2d() {};
+    virtual ~CBase_interp2d();
     double virtual interp(double x, double y) = 0;
   };
   
-  // TODO uncomment that and make CSplineInY_interp2d 
-  // or CVar_spline_interp2d heritate from
-  // this class do we have to keep CSplineInY_interp2d
+  // TODO make sure that all the intelligence
+  // of the Y then X is well give to
+  // CYThenX_interp2d to CSplineInY_interp2d
 
-  //class CYThenX_interp2d : CBase_interp2d
-  //{
-  //public:
-  //  CYThenX_interp2d(const std::vector<double>& x, const std::vector<double>& y,
-  //  const DMatrix& z);
-  //  ~CYThenX_interp2d() {};
+  class CYThenX_interp2d : public CBase_interp2d
+  {
+  public:
+    CYThenX_interp2d(const vectd& x, const vectd& y, const CMatrix& z);
+    ~CYThenX_interp2d() {};
 
-  //private:
-  //  std::vector<double> m_oX;
-  //  std::vector<double> m_oY;
-  //  DMatrix m_oZ;
-  //  std::vector<ptr<Base_interp>> m_inters;
-  //};
+  protected:
+    vectd m_oX;
+    vectd m_oY;
+    CMatrix m_oZ;
+    std::vector<ptr<Base_interp>> m_inters;
+  };
 
   // interpolation in variance for x
   // and in spline for y
-  class CSplineInY_interp2d : public CBase_interp2d
+  class CSplineInY_interp2d : public CYThenX_interp2d
   {
   public:
-    CSplineInY_interp2d(const std::vector<double>& x, const std::vector<double>& y, const DMatrix& z, 
+    CSplineInY_interp2d(const vectd& x, const vectd& y, const CMatrix& z,
       const UFctInter::fctInter2Points& p_interInX, bool p_bInfomExtrapol);
 
     double virtual interp(double x, double y);
 
   protected:
-    std::vector<double> m_oX;
-    std::vector<double> m_oY;
-    DMatrix m_oZ;
     // TODO replace Spline_interp by 
     // Base interp to be more generic
     std::vector<Spline_interp> m_oSplines;
@@ -64,18 +60,16 @@ namespace Pricer
   //{
   //public:
   //  CVar_spline_interp2d(const std::vector<double>& x, const std::vector<double>& y,
-  //  const DMatrix& z);
+  //  const CMatrix& z);
 
   //  double virtual interp(double x, double y);
 
   //private:
   //  std::vector<double> m_oX;
   //  std::vector<double> m_oY;
-  //  DMatrix m_oZ;
+  //  CMatrix m_oZ;
   //  // TODO replace Spline_interp by 
   //  // Base interp to be more generic
   //  std::vector<Spline_interp> m_oSplines;
   //};
 }
-
-#endif

@@ -6,36 +6,68 @@
 
 namespace Pricer
 {
-  class CSchemeLocVol
+  class CSchemeLocalVol
   {
   public:
-    // We do not overload the destructor because
-    // the scheme is containt by the object
-    // on which he point so we do not want to 
-    // destroy it when the scheme is destroy
-    CSchemeLocVol(const ptr<CSigmaLoc>& p_sigma);
+    CSchemeLocalVol(const ptr<CSigmaLoc>& p_sigma);
     double virtual evol(double p_t, double p_s, double p_step, double p_w) const = 0;
 
-    static ptr<CSchemeLocVol> Factory(const ptr<CSigmaLoc>& p_sigma, 
-      bool p_isMillstein = false);
   protected:
     ptr<CSigmaLoc> m_sigma;
   };
 
-  class CSchemeLocVolEuler : public CSchemeLocVol
+  class CSchemeLocVolBach : public CSchemeLocalVol
   {
   public:
-    CSchemeLocVolEuler(const ptr<CSigmaLoc>& p_sigma)
-      : CSchemeLocVol(p_sigma) {};
+    CSchemeLocVolBach(const ptr<CSigmaLoc>& p_sigma);
+    double virtual evol(double p_t, double p_s, double p_step, double p_w) const = 0;
+
+    static ptr<CSchemeLocVolBach> Factory(const ptr<CSigmaLoc>& p_sigma, 
+      bool p_isMillstein = false);
+  };
+
+  class CSchemeLocVolBachEuler : public CSchemeLocVolBach
+  {
+  public:
+    CSchemeLocVolBachEuler(const ptr<CSigmaLoc>& p_sigma)
+      : CSchemeLocVolBach(p_sigma) {};
 
     double virtual evol(double p_t, double p_s, double p_step, double p_w) const;
   };
 
-  class CSchemeLocVolMilstein : public CSchemeLocVol
+  class CSchemeLocVolBachMilstein : public CSchemeLocVolBach
   {
   public:
-    CSchemeLocVolMilstein(const ptr<CSigmaLoc>& p_sigma)
-      : CSchemeLocVol(p_sigma) {};
+    CSchemeLocVolBachMilstein(const ptr<CSigmaLoc>& p_sigma)
+      : CSchemeLocVolBach(p_sigma) {};
+
+    double virtual evol(double p_t, double p_s, double p_step, double p_w) const;
+  };
+
+  class CSchemeLocVolBS : public CSchemeLocalVol
+  {
+  public:
+    CSchemeLocVolBS(const ptr<CSigmaLoc>& p_sigma);
+    double virtual evol(double p_t, double p_s, double p_step, double p_w) const = 0;
+
+    static ptr<CSchemeLocVolBS> Factory(const ptr<CSigmaLoc>& p_sigma,
+      bool p_isMillstein = false);
+  };
+
+  class CSchemeLocVolBSEuler : public CSchemeLocVolBS
+  {
+  public:
+    CSchemeLocVolBSEuler(const ptr<CSigmaLoc>& p_sigma)
+      : CSchemeLocVolBS(p_sigma) {};
+
+    double virtual evol(double p_t, double p_s, double p_step, double p_w) const;
+  };
+
+  class CSchemeLocVolBSMilstein : public CSchemeLocVolBS
+  {
+  public:
+    CSchemeLocVolBSMilstein(const ptr<CSigmaLoc>& p_sigma)
+      : CSchemeLocVolBS(p_sigma) {};
 
     double virtual evol(double p_t, double p_s, double p_step, double p_w) const;
   };
